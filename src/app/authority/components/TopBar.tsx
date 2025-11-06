@@ -78,7 +78,7 @@ export default function TopBar({ children }: { children: React.ReactNode }) {
 
             <div className="ml-auto flex gap-4 items-center">
               <Image src="/icons/bellSimple.svg" alt="bell" width={24} height={24} className="cursor-pointer" />
-              <div className="w-8 h-8 rounded-full bg-[#8A2CF4] flex items-center justify-center font-bold text-sm">B</div>
+              <div className="w-8 h-8 rounded-full bg-[#8A2CF4] flex items-center justify-center font-bold text-sm">MB</div>
             </div>
           </div>
         </header>

@@ -1,311 +1,3 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import Image from "next/image";
-// import { usePathname, useRouter } from "next/navigation";
-// import { colors, images } from "@/styles/assets";
-// import { useAuth } from "@/utils/Auth";
-
-// export default function SideBar() {
-//   const [collapsed, setCollapsed] = useState(false);
-//   const { setUser } = useAuth();
-//   const pathname = usePathname();
-//   const router = useRouter();
-
-//   const menuItems = [
-//     { name: "Dashboard", icon: "/icons/dashboard-line.svg", activeIcon: "/icons/dashboard-fill.svg", path: "/authority" },
-//     { name: "Users", icon: "/icons/group-line.svg", activeIcon: "/icons/group-fill.svg", path: "/authority/users" },
-//     { name: "Event & Ticketing", icon: "/icons/calendar-schedule-line.svg", activeIcon: "/icons/calendar-schedule-line.svg", path: "/authority/" },
-//     { name: "Revenue & Financial", icon: "/icons/cash-line.svg", path: "/authority/", activeIcon: "/icons/cash-fill.svg" },
-//     { name: "Referrals", icon: "/icons/gift-2-line.svg", path: "/authority/", activeIcon: "/icons/gift-2-fill.svg" },
-//     { name: "Marketing&Promotions", icon: "/icons/megaphone-line.svg", path: "/authority/", activeIcon: "/icons/megaphone-fill.svg" },
-//     { name: "Security&Compliance", icon: "/icons/lock-line.svg", path: "/authority/", activeIcon: "/icons/Vector.svg" },
-//     { name: "Customer Support", icon: "/icons/customer-service-2-line.svg", path: "/authority/", activeIcon: "/images/customer-service-2-line.svg" },
-//     { name: "Loyalty & Gamification", icon: "/icons/medal-line.svg", path: "/authority/", activeIcon: "/icons/medal-fill.svg" },
-//   ];
- 
-//   useEffect(() => {
-//     const handleResize = () => {
-//       if (window.innerWidth <= 1000) {
-//         setCollapsed(true);
-//       } else {
-//         setCollapsed(false);
-//       }
-//     };
-
-//     handleResize();
-//     window.addEventListener("resize", handleResize);
-//     return () => window.removeEventListener("resize", handleResize);
-//   }, []);
-
-//   return (
-//     <div
-//       style={{ background: colors.bg1 }}
-//       className={`flex flex-col justify-between text-white transition-all duration-200 h-screen
-//         ${collapsed ? "w-25 min-w-25" : "min-w-65 w-65"}
-//       `}
-//     >
-//       <div className="sticky top-0 bg-[colors.bg1] z-10 p-5 pb-4">
-//         <div className={`flex items-center ${collapsed ? "flex-col gap-2" : "gap-3"}`}>
-//           <Image
-//             src={images.raffle_logo}
-//             width={30}
-//             height={30}
-//             alt="Logo"
-//             className="transition-all duration-300"
-//           />
-//           {!collapsed && (
-//             <div
-//               className="text-xl font-bold leading-8 bg-clip-text text-transparent"
-//               style={{
-//                 backgroundImage:
-//                   "linear-gradient( #2E1988, #351C91, #4725AB, #6432D4, #6834D9, #8A2CF4, #5F09AF, #170023)",
-//               }}
-//             >
-//               Baccvs
-//             </div>
-//           )}
-//         </div>
-//       </div>
-
-//       <div className="flex-1 overflow-y-auto scrollbar-hide px-3">
-//         <nav className="flex flex-col gap-1 mt-4 mb-1">
-//           {menuItems.map((item, idx) => {
-//             const isActive =
-//               item.path === "/admin"
-//                 ? pathname === "/admin"
-//                 : pathname.startsWith(item.path);
-
-//             return (
-//               <button
-//                 key={idx}
-//                 onClick={() => router.push(item.path)}
-//                 className={`
-//                   flex items-center rounded-md transition-colors cursor-pointer
-//                   ${collapsed ? "justify-center py-4" : "gap-3 p-4"}
-//                   ${isActive ? "bg-[#7039AC] text-white" : "hover:bg-[#7039AC]"}
-//                 `}
-//               >
-//                 <Image
-//                   src={isActive ? item.activeIcon : item.icon}
-//                   alt="icons"
-//                   width={20}
-//                   height={20}
-//                   className="w-5 h-5"
-//                 />
-//                 {!collapsed && (
-//                   <span className="text-base font-medium ">
-//                     {item.name}
-//                   </span>
-//                 )}
-//               </button>
-//             );
-//           })}
-//         </nav>
-//       </div>
-
-//       <div className="sticky bottom-0 bg-[colors.bg1] z-10 p-4 pt-2 border-t border-[#5b2d96]/40">
-//         <button
-//           onClick={() => { localStorage.clear(); setUser(null); }}
-//           className={`flex items-center w-full rounded-md transition-colors
-//             ${collapsed ? "justify-center py-3" : "gap-3 px-4 py-3"}
-//             hover:bg-[#7039AC]
-//           `}
-//         >
-//           <Image src="/icons/group-3-line.svg" alt="icons" height={25} width={25} />
-//           {!collapsed && <span className="text-Color-Grey-400">Staffs</span>}
-//         </button>
-
-//         <button
-//           onClick={() => { localStorage.clear(); setUser(null); }}
-//           className={`flex items-center w-full rounded-md transition-colors
-//             ${collapsed ? "justify-center py-3" : "gap-3 px-4 py-3"}
-//             hover:bg-[#7039AC]
-//           `}
-//         >
-//           <Image src="/icons/settings-3-line.svg" alt="icons" height={25} width={25} />
-//           {!collapsed && <span className="text-Color-Grey-400">Settings</span>}
-//         </button>
-
-//         <button
-//           onClick={() => { localStorage.clear(); setUser(null); }}
-//           className={`flex items-center w-full rounded-md transition-colors
-//             ${collapsed ? "justify-center py-3" : "gap-3 px-4 py-3"}
-//             hover:bg-[#f50927]
-//           `}
-//         >
-//           <Image src="/icons/logout-circle-line.svg" alt="icons" height={25} width={25} />
-//           {!collapsed && <span className="text-Color-Grey-400">Logout</span>}
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import Image from "next/image";
-// import { usePathname, useRouter } from "next/navigation";
-// import { colors, images } from "@/styles/assets";
-// import { useAuth } from "@/utils/Auth";
-// import { X } from "lucide-react";
-
-// export default function SideBar({
-//   isMobile,
-//   isOpen,
-//   onClose,
-// }: {
-//   isMobile: boolean;
-//   isOpen: boolean;
-//   onClose: () => void;
-// }) {
-//   const [collapsed, setCollapsed] = useState(false);
-//   const { setUser } = useAuth();
-//   const pathname = usePathname();
-//   const router = useRouter();
-
-//   const menuItems = [
-//     { name: "Dashboard", icon: "/icons/dashboard-line.svg", activeIcon: "/icons/dashboard-fill.svg", path: "/authority" },
-//     { name: "Users", icon: "/icons/group-line.svg", activeIcon: "/icons/group-fill.svg", path: "/authority/users" },
-//     { name: "Event & Ticketing", icon: "/icons/calendar-schedule-line.svg", activeIcon: "/icons/calendar-schedule-line.svg", path: "/authority/" },
-//     { name: "Revenue & Financial", icon: "/icons/cash-line.svg", path: "/authority/", activeIcon: "/icons/cash-fill.svg" },
-//     { name: "Referrals", icon: "/icons/gift-2-line.svg", path: "/authority/", activeIcon: "/icons/gift-2-fill.svg" },
-//     { name: "Marketing&Promotions", icon: "/icons/megaphone-line.svg", path: "/authority/", activeIcon: "/icons/megaphone-fill.svg" },
-//     { name: "Security&Compliance", icon: "/icons/lock-line.svg", path: "/authority/", activeIcon: "/icons/Vector.svg" },
-//     { name: "Customer Support", icon: "/icons/customer-service-2-line.svg", path: "/authority/", activeIcon: "/images/customer-service-2-line.svg" },
-//     { name: "Loyalty & Gamification", icon: "/icons/medal-line.svg", path: "/authority/", activeIcon: "/icons/medal-fill.svg" },
-//   ];
-
-//   useEffect(() => {
-//     const handleResize = () => {
-//       if (!isMobile && window.innerWidth <= 1000) {
-//         setCollapsed(true);
-//       } else {
-//         setCollapsed(false);
-//       }
-//     };
-
-//     handleResize();
-//     window.addEventListener("resize", handleResize);
-//     return () => window.removeEventListener("resize", handleResize);
-//   }, [isMobile]);
-
-//   const handleLogout = () => {
-//     localStorage.clear();
-//     setUser(null);
-//   };
-
-//   return (
-//     <>
-//       {/* ✅ Overlay for mobile */}
-//       {isMobile && isOpen && (
-//         <div
-//           className="fixed inset-0 bg-black/40 z-40"
-//           onClick={onClose}
-//         ></div>
-//       )}
-
-//       {/* Sidebar */}
-//       <div
-//         style={{ background: colors.bg1 }}
-//         className={`fixed z-50 flex flex-col justify-between text-white transition-all duration-300 h-screen
-//           ${isMobile
-//             ? `${isOpen ? "translate-x-0" : "-translate-x-full"} w-64`
-//             : collapsed
-//             ? "w-25 min-w-10"
-//             : "min-w-65 w-65"
-//           }
-//         `}
-//       >
-//         {/* Header */}
-//         <div className="sticky top-0 bg-[colors.bg1] z-10 p-5 pb-4 flex items-center justify-between">
-//           <div className={`flex items-center ${collapsed ? "flex-col gap-2" : "gap-3"}`}>
-//             <Image src={images.raffle_logo} width={30} height={30} alt="Logo" />
-//             {!collapsed && (
-//               <div
-//                 className="text-xl font-bold leading-8 bg-clip-text text-transparent"
-//                 style={{
-//                   backgroundImage:
-//                     "linear-gradient( #2E1988, #351C91, #4725AB, #6432D4, #6834D9, #8A2CF4, #5F09AF, #170023)",
-//                 }}
-//               >
-//                 Baccvs
-//               </div>
-//             )}
-//           </div>
-
-//           {/* ✅ Close button (only mobile) */}
-//           {isMobile && (
-//             <button onClick={onClose} className="text-white">
-//               <X size={22} />
-//             </button>
-//           )}
-//         </div>
-
-//         {/* Menu */}
-//         <div className="flex-1 overflow-y-auto scrollbar-hide px-3">
-//           <nav className="flex flex-col gap-1 mt-4 mb-1">
-//             {menuItems.map((item, idx) => {
-//               const isActive = pathname.startsWith(item.path);
-//               return (
-//                 <button
-//                   key={idx}
-//                   onClick={() => {
-//                     router.push(item.path);
-//                     if (isMobile) onClose();
-//                   }}
-//                   className={`
-//                     flex items-center rounded-md transition-colors cursor-pointer
-//                     ${collapsed ? "justify-center py-4" : "gap-3 p-4"}
-//                     ${isActive ? "bg-[#7039AC] text-white" : "hover:bg-[#7039AC]"}
-//                   `}
-//                 >
-//                   <Image
-//                     src={isActive ? item.activeIcon : item.icon}
-//                     alt="icons"
-//                     width={20}
-//                     height={20}
-//                     className="w-5 h-5"
-//                   />
-//                   {!collapsed && <span className="text-base font-medium">{item.name}</span>}
-//                 </button>
-//               );
-//             })}
-//           </nav>
-//         </div>
-
-//         {/* Footer */}
-//         <div className="sticky bottom-0 bg-[colors.bg1] z-10 p-4 pt-2 border-t border-[#5b2d96]/40">
-//           {["Staffs", "Settings", "Logout"].map((label, idx) => (
-//             <button
-//               key={idx}
-//               onClick={handleLogout}
-//               className={`flex items-center w-full rounded-md transition-colors
-//                 ${collapsed ? "justify-center py-3" : "gap-3 px-4 py-3"}
-//                 hover:bg-[${label === "Logout" ? "#f50927" : "#7039AC"}]
-//               `}
-//             >
-//               <Image
-//                 src={`/icons/${label === "Logout" ? "logout-circle-line" : label === "Settings" ? "settings-3-line" : "group-3-line"}.svg`}
-//                 alt="icon"
-//                 height={25}
-//                 width={25}
-//               />
-//               {!collapsed && <span className="text-Color-Grey-400">{label}</span>}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-
-
-
 "use client";
 import React, { useEffect } from "react";
 import Image from "next/image";
@@ -344,13 +36,13 @@ export default function SideBar({
   const menuItems = [
     { name: "Dashboard", icon: "/icons/dashboard-line.svg", activeIcon: "/icons/dashboard-fill.svg", path: "/authority" },
     { name: "Users", icon: "/icons/group-line.svg", activeIcon: "/icons/group-fill.svg", path: "/authority/users" },
-    { name: "Event & Ticketing", icon: "/icons/calendar-schedule-line.svg", activeIcon: "/icons/calendar-schedule-line.svg", path: "/authority/" },
-    { name: "Revenue & Financial", icon: "/icons/cash-line.svg", path: "/authority/", activeIcon: "/icons/cash-fill.svg" },
-    { name: "Referrals", icon: "/icons/gift-2-line.svg", path: "/authority/", activeIcon: "/icons/gift-2-fill.svg" },
-    { name: "Marketing&Promotions", icon: "/icons/megaphone-line.svg", path: "/authority/", activeIcon: "/icons/megaphone-fill.svg" },
-    { name: "Security&Compliance", icon: "/icons/lock-line.svg", path: "/authority/", activeIcon: "/icons/Vector.svg" },
-    { name: "Customer Support", icon: "/icons/customer-service-2-line.svg", path: "/authority/", activeIcon: "/images/customer-service-2-line.svg" },
-    { name: "Loyalty & Gamification", icon: "/icons/medal-line.svg", path: "/authority/", activeIcon: "/icons/medal-fill.svg" },
+    { name: "Event & Ticketing", icon: "/icons/calendar-schedule-line.svg", activeIcon: "/icons/calendar-schedule-line.svg", path: "/authority/events" },
+    { name: "Revenue & Financial", icon: "/icons/cash-line.svg", path: "/authority/revenue", activeIcon: "/icons/cash-fill.svg" },
+    { name: "Referrals", icon: "/icons/gift-2-line.svg", path: "/authority/referrals", activeIcon: "/icons/gift-2-fill.svg" },
+    { name: "Marketing&Promotions", icon: "/icons/megaphone-line.svg", path: "/authority/marketing", activeIcon: "/icons/megaphone-fill.svg" },
+    { name: "Security&Compliance", icon: "/icons/lock-line.svg", path: "/authority/security", activeIcon: "/icons/Vector.svg" },
+    { name: "Customer Support", icon: "/icons/customer-service-2-line.svg", path: "/authority/support", activeIcon: "/images/customer-service-2-line.svg" },
+    { name: "Loyalty & Gamification", icon: "/icons/medal-line.svg", path: "/authority/loyalty", activeIcon: "/icons/medal-fill.svg" },
   ];
 
   const handleLogout = () => {
@@ -393,7 +85,7 @@ export default function SideBar({
           <div className="flex-1 overflow-y-auto scrollbar-hide px-3">
             <nav className="flex flex-col gap-1 mt-4 mb-1">
               {menuItems.map((item, idx) => {
-                const isActive = pathname.startsWith(item.path);
+                const isActive = pathname === item.path;
                 return (
                   <button
                     key={idx}
@@ -413,17 +105,17 @@ export default function SideBar({
 
           {/* footer (actions) */}
           <div className="p-4 pt-2 border-t border-[#5b2d96]/40">
-            <button onClick={handleLogout} className={`flex items-center w-full rounded-md transition-colors ${isCollapsed ? "justify-center py-3" : "gap-3 px-4 py-3"} hover:bg-[#7039AC]`}>
+            <button onClick={handleLogout} className={`flex items-center cursor-pointer w-full rounded-md transition-colors ${isCollapsed ? "justify-center py-3" : "gap-3 px-4 py-3"} hover:bg-[#7039AC]`}>
               <Image src="/icons/group-3-line.svg" alt="staffs" width={25} height={25} />
               {!isCollapsed && <span className="text-Color-Grey-400">Staffs</span>}
             </button>
 
-            <button onClick={handleLogout} className={`mt-2 flex items-center w-full rounded-md transition-colors ${isCollapsed ? "justify-center py-3" : "gap-3 px-4 py-3"} hover:bg-[#7039AC]`}>
+            <button onClick={handleLogout} className={`mt-2 flex cursor-pointer items-center w-full rounded-md transition-colors ${isCollapsed ? "justify-center py-3" : "gap-3 px-4 py-3"} hover:bg-[#7039AC]`}>
               <Image src="/icons/settings-3-line.svg" alt="settings" width={25} height={25} />
               {!isCollapsed && <span className="text-Color-Grey-400">Settings</span>}
             </button>
 
-            <button onClick={handleLogout} className={`mt-2 flex items-center w-full rounded-md transition-colors ${isCollapsed ? "justify-center py-3" : "gap-3 px-4 py-3"} hover:bg-[#f50927]`}>
+            <button onClick={handleLogout} className={`mt-2 cursor-pointer flex items-center w-full rounded-md transition-colors ${isCollapsed ? "justify-center py-3" : "gap-3 px-4 py-3"} hover:bg-[#f50927]`}>
               <Image src="/icons/logout-circle-line.svg" alt="logout" width={25} height={25} />
               {!isCollapsed && <span className="text-Color-Grey-400">Logout</span>}
             </button>

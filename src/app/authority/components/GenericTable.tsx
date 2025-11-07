@@ -48,19 +48,20 @@ export default function GenericTable({
   };
 
   return (
-    <div className="w-full bg-[#150A24] text-white rounded-2xl p-6 shadow-lg">
+    <div className="w-full bg-[#150A24] text-white rounded-2xl p-4 sm:p-6 shadow-lg">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex gap-6 items-center">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 flex-wrap">
+
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:items-center">
           <h2 className="text-lg font-semibold">{title}</h2>
 
-          <div className="relative">
+          <div className="relative w-full sm:w-auto">
             <input
               type="text"
               placeholder="Search user"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-[#1E0E33] text-white p-3 pl-10 rounded-full focus:outline-none focus:ring-1 focus:ring-[#8A2CF4]"
+              className="w-full sm:w-64 bg-[#1E0E33] text-white p-3 pl-10 rounded-full focus:outline-none focus:ring-1 focus:ring-[#8A2CF4] text-sm"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -79,23 +80,23 @@ export default function GenericTable({
           </div>
         </div>
 
-        <div className="flex gap-3 items-center">
+        <div>
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="px-3 py-2 bg-[#1E0E33] rounded-lg text-white border border-gray-500/20 cursor-pointer"
+            className="w-full sm:w-auto px-3 py-2 bg-[#1E0E33] rounded-lg text-white border border-gray-500/20 cursor-pointer text-sm"
           >
-            <option className="w-44 px-4 py-3 border-b-[0.50px] border-gray-500/20 inline-flex justify-between items-center">All</option>
+            <option>All</option>
             <option>Active</option>
             <option>Inactive</option>
             <option>Banned</option>
           </select>
         </div>
-      </div>
+      </div> 
 
-      {/* Action Bar (when rows selected) */}
-      {(selectedRows.length > 0) && (
-        <div className="flex items-center justify-between bg-[#1E0E33] p-3 rounded-xl mb-4">
+      {/* Action Bar */}
+      {selectedRows.length > 0 && (
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-[#1E0E33] p-3 rounded-xl mb-4 gap-3">
           <div className="flex items-center gap-3">
             <input
               type="checkbox"
@@ -104,40 +105,37 @@ export default function GenericTable({
               onChange={handleSelectAll}
             />
             <span className="text-sm text-gray-300">Select all</span>
-            {selectedRows.length > 0 && (
-              <span className="text-sm text-gray-400 ml-2">
-                {selectedRows.length} of {data.length} selected
-              </span>
-            )}
+            <span className="text-sm text-gray-400 ml-1">
+              {selectedRows.length} of {data.length} selected
+            </span>
           </div>
 
-          {selectedRows.length > 0 && (
-            <div className="flex gap-3 items-center">
-              <button
-                onClick={() => onBanUsers && onBanUsers(selectedRows)}
-                className="bg-[#D82C4B] hover:bg-[#ff3b5c] text-white px-4 py-2 rounded-lg text-sm"
-              >
-                Ban User
-              </button>
-              <button
-                onClick={() => {
-                  selectedRows.forEach((row) => onDelete && onDelete(row));
-                  setSelectedRows([]);
-                }}
-                className="bg-[#31204A] hover:bg-[#4a2c6d] text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2"
-              >
-                <Trash2 size={16} />
-                Delete
-              </button>
-            </div>
-          )}
+          <div className="flex gap-3 items-center">
+            <button
+              onClick={() => onBanUsers && onBanUsers(selectedRows)}
+              className="bg-[#D82C4B] hover:bg-[#ff3b5c] text-white px-4 py-2 rounded-lg text-sm"
+            >
+              Ban User
+            </button>
+            <button
+              onClick={() => {
+                selectedRows.forEach((row) => onDelete && onDelete(row));
+                setSelectedRows([]);
+              }}
+              className="bg-[#31204A] hover:bg-[#4a2c6d] text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2"
+            >
+              <Trash2 size={16} />
+              Delete
+            </button>
+          </div>
         </div>
       )}
 
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
+      <div className="overflow-x-auto rounded-xl border border-[#2D1B4E]/50 scrollbar-thin scrollbar-thumb-[#2D1B4E] scrollbar-track-[#150A24]">
+        <table className="min-w-full border-collapse text-sm">
+
+          <thead className="bg-[#1E0E33] sticky top-0 z-10">
             <tr className="text-gray-400 border-b border-[#2D1B4E] text-sm">
               <th className="p-3 text-left w-12"></th>
               {columns.map((col) => (
@@ -153,9 +151,8 @@ export default function GenericTable({
             {filteredData.map((row, idx) => (
               <tr
                 key={idx}
-                className={`border-b border-[#2D1B4E] hover:bg-[#1A0C2D] transition-colors ${
-                  selectedRows.includes(row) ? "bg-[#24113A]" : ""
-                }`}
+                className={`border-b border-[#2D1B4E] hover:bg-[#1A0C2D] transition-colors ${selectedRows.includes(row) ? "bg-[#24113A]" : ""
+                  }`}
               >
                 <td className="p-3">
                   <input
@@ -167,7 +164,10 @@ export default function GenericTable({
                 </td>
 
                 {columns.map((col) => (
-                  <td key={col.key} className="p-3 text-sm text-gray-200">
+                  <td
+                    key={col.key}
+                    className="p-3 text-sm text-gray-200 whitespace-nowrap"
+                  >
                     {col.render ? col.render(row[col.key], row) : row[col.key]}
                   </td>
                 ))}
@@ -185,6 +185,13 @@ export default function GenericTable({
           </tbody>
         </table>
       </div>
+
+      {/* Empty State */}
+      {filteredData.length === 0 && (
+        <div className="text-center py-10 text-gray-400 text-sm">
+          No users found.
+        </div>
+      )}
     </div>
   );
 }

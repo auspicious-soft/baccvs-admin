@@ -3,12 +3,17 @@ import "./globals.css";
 import ReactQueryProvider from "@/utils/ReactQueryProvider";
 import { AuthProvider, useAuth } from "@/utils/Auth";
 import ProtectedRoute from "@/components/ProtectRoute";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "Baccvs",
   description: "Baccvs",
 };
-
+const SatoshiRegular = localFont({
+  src: "../assets/fonts/Satoshi-Regular.otf",
+  display: "swap",
+  variable: "--font-satoshi-regular",
+});
 export default function RootLayout({
   children,
 }: Readonly<{

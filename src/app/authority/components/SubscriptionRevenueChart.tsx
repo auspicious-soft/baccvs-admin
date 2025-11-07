@@ -367,7 +367,9 @@ const DonutGauge: React.FC<{
   return (
     <div className="flex flex-col items-center w-full">
       <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px]">
-        <canvas ref={chartRef} className="w-full h-full"></canvas>
+        {/* <div className="w-"> */}
+        <canvas ref={chartRef} className="w-full h-full px-1"></canvas>
+        {/* </div> */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <h3 className="text-xl font-bold">
             {valuePrefix}

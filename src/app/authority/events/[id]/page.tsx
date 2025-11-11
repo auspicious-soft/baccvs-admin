@@ -36,12 +36,7 @@ const engagementData: DataItem[] = [
   { Comments: 300000 },
 ];
 
-const genderData = [
-  { name: "Male", value: 76 },
-  { name: "Female", value: 24 },
-];
 
-const COLORS = ["#6C63FF", "#FF6584", "#FDBA74"];
 
 const reports = [
   { name: "Cody Fisher", issue: "Fake events", description: "This event appears to be fraudulent or does not exist." },

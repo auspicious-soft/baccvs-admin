@@ -95,7 +95,7 @@ export default function EventDashboard() {
     const [selectedRange, setSelectedRange] = useState("This Week");
 
     return (
-        <div className="min-h-screen w-full bg-[#0b081a] text-white font-sans">
+        <div className="min-h-fit w-full bg-[#0b081a] text-white font-sans">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
                 <div>
@@ -106,7 +106,7 @@ export default function EventDashboard() {
                         Overview of ticket sales and events
                     </p>
                 </div>
-                <div className="flex items-center gap-2 bg-[#1a1535] rounded-lg px-3 py-2 text-sm cursor-pointer">
+                <div className="flex items-center gap-2 bg-[#190D29] rounded-lg px-3 py-2 text-sm cursor-pointer">
                     <Calendar className="w-4 h-4 text-gray-400" />
                     <span>Jan 20, 2024 - Feb 09, 2024</span>
                 </div>
@@ -142,7 +142,7 @@ export default function EventDashboard() {
                     {/* Chart & Top Events */}
                     <div className="flex flex-col  gap-6 mb-8">
                         {/* Chart Section */}
-                        <div className="bg-[#1a1535] p-6 rounded-2xl col-span-2">
+                        <div className="bg-[#190D29] p-6 rounded-2xl col-span-2">
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2">
                                 <h3 className="text-lg font-semibold">Ticket Sales & Revenue</h3>
                                 <div className="flex gap-2 text-sm">
@@ -173,7 +173,7 @@ export default function EventDashboard() {
                                     <YAxis stroke="#aaa" />
                                     <Tooltip
                                         contentStyle={{
-                                            backgroundColor: "#1a1535",
+                                            backgroundColor: "#190D29",
                                             border: "none",
                                             borderRadius: "8px",
                                         }}
@@ -196,7 +196,7 @@ export default function EventDashboard() {
                             </ResponsiveContainer>
                         </div>
                         {/* Events Table */}
-                        <div className="bg-[#1a1535] p-6 rounded-2xl">
+                        <div className="bg-[#190D29] p-6 rounded-2xl">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-3">
                                 <h3 className="text-lg font-semibold">Events</h3>
                                 <input
@@ -244,7 +244,7 @@ export default function EventDashboard() {
                     </div>
                 </div>
                 {/* Top Events */}
-                <div className="bg-[#1a1535] p-4 rounded-2xl h-fit w-full md:w-[40%]">
+                <div className="bg-[#190D29] p-4 rounded-2xl h-fit w-full md:w-[40%]">
                     <h3 className="text-lg font-semibold mb-6">Top Events</h3>
                     <div className="">
                         {events.map((e, i) => (

@@ -20,7 +20,7 @@ import StatCard from "./components/StatCard";
 
 Chart.register(ArcElement, DoughnutController, ChartTooltip);
 
-interface DataItem {
+export interface DataItem {
   [key: string]: number;
 }
 
@@ -93,7 +93,7 @@ export default function Page() {
             {/* New Users */}
             <div className="bg-[#1b1538] rounded-2xl p-5">
               <h2 className="text-lg font-medium mb-4">New Users</h2>
-              {[1, 2, 3, 4, 5].map((i) => (
+              {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
                   className="flex justify-between flex-wrap items-center py-3 border-b border-white/10 last:border-0"
@@ -159,16 +159,18 @@ export default function Page() {
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-col gap-6 w-full lg:w-[35%]">
+        <div className="flex flex-col gap-6 w-full lg:w-[30%]">
           {/* Subscription Revenue */}
-          <div className="bg-[#1b1538] rounded-2xl p-6">
-            <h2 className="text-lg font-medium mb-3">Subscription Revenue</h2>
+          <div className="bg-[#1b1538] rounded-2xl p-6 flex flex-col ">
+            <h2 className="flex text-lg font-medium mb-3 items-start ">Subscription Revenue</h2>
+            {/* <div className="flex items-center m-auto"> */}
             <DonutGauge
               title="Total subscription"
               data={subscriptionData}
               valuePrefix="$"
               layout="list"
             />
+            {/* </div> */}
           </div>
 
           {/* Upcoming Events */}
